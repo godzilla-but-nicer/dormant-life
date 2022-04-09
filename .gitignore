@@ -1,3 +1,22 @@
+# plots etc
+*.png
+*.pdf
+*.mp4
+
+# data files
+data/*
+
+# weird LaTeX stuff
+*.aux
+*.bbl
+*.blg
+*.fdb_latex
+*.fls
+*.log
+*.run.xml
+*.synctex.gz
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

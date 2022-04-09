@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Refs
+\usepackage[style=nature, backend=bibtex]{biblatex}
+\addbibresource{dormant-life.bib}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Figures
+\usepackage{graphicx}
+\newcommand{\figref}[1]{Fig.~\ref{fig:#1}}
+
+% subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+
+% author notes
+\newcommand{\note}[1]{\textcolor{red}{[#1]}}
+
+\title{Dormancy Produces Long Transients in Game of Life}
+\author{Pat Wall}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Long Transients in DormantLife}
+
+Transient states are those that a system passes through on its way to an
+attractor or limit-cycle steady state. The number of such transient states
+visited by a system has long been used as a measure of system complexity with
+long transients indicating greater complexity
+\cite{wolfram_statistical_1983,langton_computation_1990}. Such transient
+dynamics have long been implicated is potentially important in the overall
+dynamics of ecological communities
+\cite{hastings_transient_2018,turchin_complex_1992}.
+
+We simulated Conway's Game of Life, as well as the modified DormantLife
+\cite{hutchison_cell_2006} on a 7x7 cell grid starting from 10000 uniformly
+distributed initial system states. Each simulation was halted was stopped after
+the system entered any state for the second time. The number of states in
+between the two occurrences of the repeated state defined the period ($T$) while
+the number of states from initialization to the first occurrence of the repeated
+state defined the transient length ($l$). 
+
+The addition of the dormant state to Game of Life resulted in longer transient
+lengths by a factor of nearly 100 on average as shown in
+\figref{transient-hist}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{assets/transient_dists_77.pdf}
+    \caption{\textbf{Dormancy increases transient lengths in Game of Life.}
+    Histogram of log-scale transient lengths for Game of Life (blue) and
+    DormantLife (orange) with dashed lines showing the mean transient length for
+    the two models. The mean for DormantLife is nearly 100x larger than the mean
+    for Game of Life.}
+    \label{fig:transient-hist}
+\end{figure}
+
+\section{More Living Cells in DormantLife}
+
+Game of Life and the DormantLife model both consider both living and unoccupied
+or dead cells. We counted the number of living cells for the first 50 time
+steps of both Game of Life and DormantLife in a 10x10 grid. For the sake of
+calculating this number we did not consider cells in the dormant state to be
+alive in the DormantLife model.
+
+We found that DormantLife produces a significantly higher number of living cells
+after an initial settling period of about 4 time steps. \figref{living-cells}
+shows DormantLife approaching a positive number of living cells while Game of
+Life continually decreases.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{assets/livingcells.pdf}
+    \caption{\textbf{Dormancy increases the number of cells that are alive in
+    Game of Life.} Average number of living cells in the first 50 time steps of
+    randomly initialized Life models with bootstrap confidence intervals.
+    DormantLife produces consistently greater numbers of living cells than
+    Game of Life.}
+    \label{fig:living-cells}
+\end{figure}
+
+We can estimate the number of cells alive at equilibrium by considering an
+ensemble of neighborhoods for our life simulations occupying all possible
+neighborhood states in equal proportion. \note{i think this assumes argodicity
+which is definitely not true} Then we can consider the next step of each of
+these replicate neighborhoods. 
+
+\printbibliography
+\end{document}
