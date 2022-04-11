@@ -4,7 +4,7 @@ from typing import Iterable, Union
 
 
 class Spin:
-    def __init__(self, hamiltonian: Callable[[np.array, dict], float],
+    def __init__(self, hamiltonian: Callable,
                  pars: dict,
                  grid_size: int,
                  p: Iterable[float] = [0.5, 0.5],
