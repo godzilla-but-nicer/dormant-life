@@ -92,7 +92,15 @@ We can estimate the number of cells alive at equilibrium by considering an
 ensemble of neighborhoods for our life simulations occupying all possible
 neighborhood states in equal proportion. \note{i think this assumes argodicity
 which is definitely not true} Then we can consider the next step of each of
-these replicate neighborhoods. 
+these replicate neighborhoods. We can define the probability of a cell being
+in the living state as
+
+
+
+\begin{align}
+    P_n = P_{n-1}l + (1 - P_{n-1})k\\
+    P_n = P_{n-1} l + k - P_{n - 1} k
+\end{align}
 
 \printbibliography
 \end{document}
