@@ -1,5 +1,3 @@
-from cgi import test
-from matplotlib.pyplot import grid
 import numpy as np
 from collections.abc import Callable
 from typing import Iterable, Union
