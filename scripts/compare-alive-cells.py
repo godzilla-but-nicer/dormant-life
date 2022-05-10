@@ -5,14 +5,14 @@ from casim.Totalistic2D import DormantLife, GameOfLife
 # params
 n_inits = 100
 m_steps = 50
-grid_size = 10
+grid_size = 50
 bootstrap_num = 10000
 low_percentile = 5
 high_percentile = 95
 
 # initialize both models
-gol = GameOfLife(123)
-dl = DormantLife(123)
+gol = GameOfLife(seed=123)
+dl = DormantLife(seed=123)
 
 # hard to compare directly so we will just simulate a bunch of random starts
 # and get distributions of number of alive cells.
@@ -78,7 +78,7 @@ plt.fill_between(range(m_steps), dl_boots_low, dl_means,
 
 plt.legend()
 plt.xlabel('Time [steps]')
-plt.ylabel(r'Number Living Cells $\pm$ 95% bootstrap')
-plt.savefig('livingcells.png')
-plt.savefig('livingcells.pdf')
+plt.ylabel(r'Number of Living Cells $\pm$ 95% bootstrap')
+plt.savefig('plots/livingcells.png')
+plt.savefig('plots/livingcells.pdf')
 plt.show()

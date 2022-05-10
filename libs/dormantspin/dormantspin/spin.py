@@ -33,7 +33,7 @@ class Spin:
         self.beta = 1
 
 
-    def _step(self, i: int = None, j: int = None):
+    def _step(self, i: int = None, j: int = None) -> float:
         """ Single step of the metropolis algorithm
             parameters i and j are for testing only """
 
@@ -80,7 +80,7 @@ class Spin:
         
         return time_series
 
-    def set_grid(self, grid):
+    def set_grid(self, grid) -> float:
         self.grid = grid
         self.last_energy = self.H(self.grid, self.pars)
         # again basically for testing

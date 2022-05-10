@@ -7,7 +7,7 @@ from matplotlib import animation
 # keep this so we can use it more than once
 initial_grid = np.random.choice([0, 1, 2], size=[6, 6], p=[0.34, 0.33, 0.33])
 
-gol = DormantLife(420)
+gol = DormantLife(noise=0.0,seed=420)
 
 # get the transients and the grid at each step
 hist, trans = gol.simulate_transients(initial_grid, 1000)
@@ -40,4 +40,4 @@ def draw_life(i):
 
 ani = animation.FuncAnimation(fig, draw_life, interval=80, frames=long_hist.shape[0])
 # ani.save('dlife.gif', writer='imagemagick')
-ani.save('transient.mp4', writer='ffmpeg')
+ani.save('plots/transient.mp4', writer='ffmpeg')

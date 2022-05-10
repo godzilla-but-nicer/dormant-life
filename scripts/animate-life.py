@@ -3,15 +3,15 @@ import matplotlib.pyplot as plt
 from casim.Totalistic2D import GameOfLife, DormantLife
 from matplotlib import animation
 
-initial_conditions = np.random.choice([0, 2], p=[0.90, 0.10], size=[10, 10])
+initial_conditions = np.random.choice([0, 2], p=[0.90, 0.10], size=[50, 50])
 # initial_conditions = np.zeros((100, 100))
 # initial_conditions[20:80, 20:80] = 2
 gol_cond = initial_conditions == 2
 
-gol = DormantLife(420)
+gol = DormantLife(noise=0.2, seed=420)
 jist = gol.simulate(initial_conditions, 200)
 
-gol = GameOfLife(420)
+gol = GameOfLife(noise=0.2, seed=420)
 hist = gol.simulate(gol_cond, 200)
 
 fig, ax = plt.subplots(ncols=2, figsize=(8,4))
