@@ -1,8 +1,8 @@
 import numpy as np
 import casim.utils
-import casim.Totalistic2D
-from .Totalistic2D_knowns import gol_glider, gol_glider_next, gol_series
-from .Totalistic2D_knowns import dl_glider, dl_glider_next, dl_series
+import casim
+from Totalistic2D_knowns import gol_glider, gol_glider_next, gol_series
+from Totalistic2D_knowns import dl_glider, dl_glider_next, dl_series
 
 gol = casim.Totalistic2D.GameOfLife(seed=123)
 dl = casim.Totalistic2D.DormantLife(seed=123)
