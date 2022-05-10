@@ -9,6 +9,15 @@ def to_binary(n, digits=8):
         n = int(n / 2)
     return np.array(binary_digits[::-1])
 
+# generalization of to_binary
+def to_base(n: int, base: int, digits: int = 8) -> np.Array:
+    base_digits = []
+    for _ in range(digits):
+        base_digits.append(int(n % base))
+        n = int(n / base)
+    return np.array(base_digits[::-1])
+
+
 
 # convert binary list to integer
 def to_decimal(b, digits):
