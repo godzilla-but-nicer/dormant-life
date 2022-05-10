@@ -10,7 +10,7 @@ data/*
 *.aux
 *.bbl
 *.blg
-*.fdb_latex
+*latexmk
 *.fls
 *.log
 *.run.xml
