@@ -10,7 +10,7 @@ def to_binary(n, digits=8):
     return np.array(binary_digits[::-1])
 
 # generalization of to_binary
-def to_base(n: int, base: int, digits: int = 8) -> np.Array:
+def to_base(n: int, base: int, digits: int = 8) -> np.ndarray:
     base_digits = []
     for _ in range(digits):
         base_digits.append(int(n % base))
