@@ -81,14 +81,14 @@ gol_average = gol_living.mean(axis=0)
 # do it
 ax[0].plot(np.arange(time_steps+1), gol_average, c='C0', label='Game of Life')
 ax[0].plot(np.arange(time_steps+1), dl_average, c='C1', label='DormantLife', linestyle='--')
-ax[0].plot(np.arange(time_steps+1), sl_average, c='C2', label='Spore Life')
+#ax[0].plot(np.arange(time_steps+1), sl_average, c='C2', label='Spore Life')
 
 ax[0].legend()
 ax[0].set_xlabel('Time (step)')
 ax[0].set_ylabel('Fraction Living Cells')
 
 # the right hand panel is a histogram of nullmodel outcomes
-ax[1].axhline(sl_average[-1], c='C2')
+#ax[1].axhline(sl_average[-1], c='C2')
 ax[1].axhline(dl_average[-1], c='C1', linestyle='--')
 ax[1].axhline(gol_average[-1], c='C0')
 ax[1].hist(trial_average, orientation='horizontal',
@@ -99,6 +99,6 @@ ax[0].set_ylim(0.0, 0.33)
 ax[1].set_xticks((0, 50, 100))
 
 plt.tight_layout()
-plt.savefig('../plots/null_three_states_no_null.pdf')
-plt.savefig('../plots/null_three_states_no_null.png')
+plt.savefig('plots/null_three_states_no_null_nosl.pdf')
+plt.savefig('plots/null_three_states_no_null_nosl.png')
 plt.show()

@@ -1,7 +1,9 @@
 import numpy as np
 import numpy.typing as npt
+import networkx as nx
 from typing import Iterable, Tuple, Union
 from scipy import signal
+from .utils import to_base, to_decimal
 
 
 class Totalistic2D:
@@ -91,6 +93,26 @@ class Totalistic2D:
                     new_grid[(grid == i) & (neighbors == k)] = j
 
         return new_grid
+
+    def get_state_transition_graph(self, size: tuple) -> nx.DiGraph:
+        edges = []
+        sites = size[0] * size[1]
+        num_configs = self.states.shape[0] ** sites
+
+        for dec_state in range(num_configs):
+            # set the state and get the next step
+            state = to_base(dec_state, 3, 9).reshape((3, 3))
+            next = self.step(state)
+
+            # now we need to back encode the grid into
+            dec_next = to_decimal(next.flatten(), 9, 3)
+
+            edges.append((dec_state, dec_next))
+        
+        D = nx.from_edgelist(edges, create_using=nx.DiGraph)
+        return D
+        
+
 
     def _resolve_noise(self, grid: npt.ArrayLike) -> Tuple[npt.ArrayLike,
                                                            npt.ArrayLike]:

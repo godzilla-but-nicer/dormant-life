@@ -11,10 +11,19 @@ dl = casim.Totalistic2D.DormantLife(seed=123)
 # test generic step
 def test_gen_step():
     thresh_sets = [[[0, 1, 2, 4, 5, 6, 7, 8], [3]],
-                   [(0, 1, 4, 5, 6, 7, 8),    (2, 3)]]
+                   [(0, 1, 4, 5, 6, 7, 8), (2, 3)]]
     t1 = casim.Totalistic2D.Totalistic2D(2, thresholds=thresh_sets)
     next_step = t1.step(gol_glider)
     assert np.array_equal(next_step, gol_glider_next)
+
+
+def test_get_state_transition_graph():
+    thresh_sets = [[[0, 1, 2, 4, 5, 6, 7, 8], [], [3]],
+                   [[], [], []],
+                   [(0, 1, 4, 5, 6, 7, 8), [],   (2, 3)]]
+    t1 = casim.Totalistic2D.Totalistic2D(3, thresholds=thresh_sets)
+    D = t1.get_state_transition_graph((3, 3))
+    assert (5856, 0) in D.edges
 
 
 # game of life tests
