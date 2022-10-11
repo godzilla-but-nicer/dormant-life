@@ -4,8 +4,8 @@ import os
 import time
 start_time = time.time()
 
-trials = 20000
-max_steps = 10000
+trials = 10000
+max_steps = 5000
 grid_size = 5
 models = 500
 

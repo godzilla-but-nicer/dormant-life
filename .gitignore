@@ -3,8 +3,17 @@
 *.pdf
 *.mp4
 
+rule_tables/game_of_life_robustness/*.txt
+rule_tables/spore_life_robustness/*.txt
+
+libs/*
+
+# rust executable
+carust
+
 # data files
 data/*
+*.csv
 
 # weird LaTeX stuff
 *.aux

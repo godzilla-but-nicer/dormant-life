@@ -1,0 +1,15 @@
+sim_params:
+  runs: 1000
+  max_steps: 10000
+  t_grid: 6
+  t_random: 100
+  l_steps: 150
+  l_grid: 20
+
+living_cells:
+  boot_num: 1000
+  ci_perc: 5
+
+robustness:
+  sl_len: 23
+  gol_len: 15

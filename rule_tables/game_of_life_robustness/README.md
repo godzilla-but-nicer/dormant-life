@@ -1,0 +1,1 @@
+contains the generated robustness test rule tables for game of life

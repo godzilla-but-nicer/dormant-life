@@ -1,44 +1,49 @@
 #!/bin/python
 import numpy as np
 import seaborn as sns
+import os
 import pandas as pd
+import time
 import casim.Totalistic2D as Tot2D
 import matplotlib.pyplot as plt
 from scipy import stats
-from tqdm import tqdm
 
 # set up parameters
 grid_size = 7
-n_trials = 10000
-max_steps = 10000
+trials = 20000
+max_steps = 30000
 
-# initialize CA simulators
-gol = Tot2D.GameOfLife(420)
-dl = Tot2D.DormantLife(420)
+# game of life
+gol_start = time.time()
+os.system(f"./carust -f rule_tables/game_of_life.txt --transient {grid_size} {max_steps} {trials}")
+gol_tlist = []
+with open(f"data/gol_transients_{grid_size}_{max_steps}_{trials}.csv", 'r') as tin:
+    data = tin.read().strip().split(',')
+    for val in data:
+        if val != '':
+            gol_tlist.append(int(val))
+gol_trans = np.array(gol_tlist)
 
-# arrays for transients
-gol_transients = np.zeros(n_trials)
-dl_transients = np.zeros(n_trials)
+gol_time = time.time() - gol_start
+print(f"Game of Life time: {gol_time:.3f} s")
 
-for trial in tqdm(range(n_trials)):
-    # get initial grids
-    init_gol = np.random.choice(2, size=(grid_size, grid_size))
-    init_dl = np.random.choice(3, size=(grid_size, grid_size))
+# spore life
+sl_start = time.time()
+os.system(f"./carust -f rule_tables/spore_life.txt --transient {grid_size} {max_steps} {trials}")
+sl_tlist = []
+with open(f"data/sl_transients_{grid_size}_{max_steps}_{trials}.csv", 'r') as tin:
+    data = tin.read().strip().split(',')
+    for val in data:
+        if val != '':
+            sl_tlist.append(int(val))
+sl_trans = np.array(sl_tlist)
+sl_time = time.time() - sl_start
+print(f"Spore Life time: {sl_time:.3f} s")
 
-    # find the transients
-    gol_hist, gol_trans = gol.simulate_transients(init_gol, max_steps)
-    dl_hist, dl_trans = dl.simulate_transients(init_dl, max_steps)
-
-    # add 1 - returned is index of final transient state
-    gol_transients[trial] = gol_trans + 1
-    dl_transients[trial] = dl_trans + 1
-
-
-all_transients = np.hstack((gol_transients, dl_transients))
-labels = np.hstack((['Game of Life']*n_trials, ['DormantLife']*n_trials))
+all_transients = np.hstack((gol_trans, sl_trans))
+labels = np.hstack((['Game of Life']*trials, ['Spore Life']*trials))
 
 df = pd.DataFrame({'Model': labels, 'Transient Length': all_transients})
-# df = pd.read_csv('transients.csv', index_col=0)
 
 sns.histplot(x='Transient Length', hue='Model', data=df, stat='count', element='bars', log_scale=True)
 plt.axvline(np.mean(df[df['Model'] == 'DormantLife']['Transient Length']), c='C1', lw=5, linestyle='--')
