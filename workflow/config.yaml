@@ -1,18 +1,18 @@
 transients:
   runs: 1000
-  max_steps: 20000
+  max_steps: 30000
   t_grid: 7
-  threads: 10
+  threads: 20
 
 null_models:
   t_grid: 7
   runs: 10
-  max_steps: 10000
+  max_steps: 30000
   random_models: 500
 
 living_cells:
   runs: 1000
-  l_grid: 20
+  l_grid: 50
   l_steps: 150
   boot_num: 1000
   ci_perc: 5

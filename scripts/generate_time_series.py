@@ -43,10 +43,10 @@ for i in tqdm(range(random_models)):
 
 # number of living cells time series
 print("Running Spore Life time series...")
-os.system(f"./carust -f rule_tables/rust/sl_rust.txt --save-all {l_grid} {l_steps} {runs}")
+os.system(f"./carust -f rule_tables/spore_life.txt --save-all {l_grid} {l_steps} {runs}")
 os.system(f"mv data/time_series.npz data/time_series/sl_time_series.npz")
 print("Running Game of Life Time series...")
-os.system(f"./carust -f rule_tables/rust/gol_rust.txt --save-all {l_grid} {l_steps} {runs}")
+os.system(f"./carust -f rule_tables/game_of_life.txt --save-all {l_grid} {l_steps} {runs}")
 os.system(f"mv data/time_series.npz data/time_series/gol_time_series.npz")
 
 # robustness models
